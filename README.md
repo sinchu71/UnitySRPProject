@@ -1,6 +1,8 @@
 Structure of the UnitySRPProject  
+
   UnitySRPProject is Repository
   FirstAssign is Project Folder it contains all these files:
+  
   Assets  
   Scenes        # Contains all scenes  
   Scripts       # Contains all C# scripts (RotateCube.cs)  
