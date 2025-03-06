@@ -29,20 +29,18 @@ To Install LeanTween Package
    https://github.com/dentedpixel/LeanTween.git
 
 
-Cube Controller Functionality:
 
-  The Cube in the scene rotates at a fixed speed using LeanTween.
-  The animation is controlled by a script located in the Scripts folder.
 
 Initialized Git in the project folder:
     Added a .gitignore file
     Pushed the FirstAssign to the main branch
-
-Created Pull Request
-A Pull Request (PR) must be created before merging into main.
-
- git checkout -b assignment_3
- git add .
- git commit -m "Added rotating cube using LeanTween"
- git push origin assignment_3
- Goto Github->Code->Select Branches->select Your Branches->select New Pull Request->Assignee Your Self->Create Pull Request.
+Following git commands are used to create a branch and push,commit and adding a files:
+  git checkout -b main
+  git add .
+  git commit -m "Added rotating cube using LeanTween"
+  git push origin main
+  
+  To Create a Pull request follow these steps:
+      Goto Github->Code->Select Branches->select Your Branches->select New Pull Request->Assignee Your Self->Create Pull Request.
+      Note:Main(Master)Branch to another main branch (Main to Main) 
+      we can't create a pull request because github won't allow to create pull request of the both same branches  and we can't merge and git never allows that.
