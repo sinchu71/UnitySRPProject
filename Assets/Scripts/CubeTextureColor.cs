@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeTextureColor: MonoBehaviour
+public class CubeTextureColor:MonoBehaviour
 {
     public Material CubeMaterial; // Assign material in Inspector
     public Texture[] textures; // Assign 5 textures in Inspector

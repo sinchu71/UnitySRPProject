@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7854857462109625213}
   - component: {fileID: 2101671095805606580}
   - component: {fileID: 86801992385677211}
-  - component: {fileID: 2804042625115665528}
-  - component: {fileID: 8162871945685679715}
-  - component: {fileID: 4951497254967872798}
+  - component: {fileID: 3340008374117791185}
+  - component: {fileID: 4302053781766658424}
+  - component: {fileID: 8415101825958650291}
   m_Layer: 0
-  m_Name: Prefab
+  m_Name: CubeTextureColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,9 +106,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2804042625115665528
+  m_Size: {x: 1.0425937, y: 1.1147336, z: 3.6650805}
+  m_Center: {x: 0.056542195, y: 0.09560831, z: 33796}
+--- !u!114 &3340008374117791185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,8 +121,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CubeMaterial: {fileID: 2100000, guid: e66d1295ed0d92a40ba4853e47263b9c, type: 2}
-  textures: []
---- !u!114 &8162871945685679715
+  textures:
+  - {fileID: 2800000, guid: 4609a225a16135948b429bd3db813a2c, type: 3}
+  - {fileID: 2800000, guid: 15613a3bf8ecf4d4b8817f68097dc608, type: 3}
+  - {fileID: 2800000, guid: 59d5fe83be1050248a2289dfcffca2d7, type: 3}
+  - {fileID: 2800000, guid: 95848a8deb77edb4e8bde080e2b20ce0, type: 3}
+  - {fileID: 2800000, guid: 1e16668f0ca8572428ee71bdb8dacdae, type: 3}
+--- !u!114 &4302053781766658424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
---- !u!114 &4951497254967872798
+--- !u!114 &8415101825958650291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
