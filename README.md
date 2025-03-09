@@ -1,7 +1,9 @@
+UnitySRPProject->Repository
+First_Assign->Unity Project Folder
 Structure of the UnitySRPProject  
 
   UnitySRPProject is Repository
-  FirstAssign is Project Folder it contains all these files:
+  First_Assign is Project Folder it contains all these files:
   
   Assets  
   Scenes        # Contains all scenes  
@@ -21,25 +23,26 @@ Clone the Repository
 Select the Unity Project Folder.
 
    Add a path of the project folder
-   Path:cd D:\FirstAssign
+      ->Path:cd D:\First_Assign
+
 
 To Install LeanTween Package
 
    Go through these->Unity Asset Store https://assetstore.unity.com/packages/tools/animation/leantween-3595
-   Open Window > Package Manager
-   Click "Add package from Git URL"
-   https://github.com/dentedpixel/LeanTween.git
-
-
-
+   ->Open Window > Package Manager
+   ->Click "Add package from Git URL"
+   ->https://github.com/dentedpixel/LeanTween.git
 
 Initialized Git in the project folder:
-    Added a .gitignore file
-    Pushed the FirstAssign to the main branch
+    ->Added a .gitignore file
+    ->Pushed the FirstAssign to the main branch
 Following git commands are used to create a branch and push,commit and adding a files:
-  git checkout -b main
-  git add .
-  git commit -m "Added rotating cube using LeanTween"
+   ->git status
+   ->git branch
+  ->git checkout -b assignment_6
+  ->git add .
+  ->git commit -m "Added Unity UI elements and scriptableObject"
+  ->git push -u origin assignment_6
   git push origin main
   
   To Create a Pull request follow these steps:
