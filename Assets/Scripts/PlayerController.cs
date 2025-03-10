@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-        public KeyBindings keyBindings;
+    public KeyBindings keyBindings;
 
         void Start()
         {

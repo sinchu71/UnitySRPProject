@@ -4,54 +4,85 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
-        [Header("Rotation Settings")]
-        public float rotationSpeed = 100f;  // Default rotation speed
-        public float speedIncrement = 10f; // Amount by which speed increases or decreases
+    [Header("Rotation Settings")]
 
-        [Header("Scaling Settings")]
-        public float scaleFactor = 0.1f;   // Amount by which the cube scales
-        public float maxScale = 3f;        // Maximum scale limit
-        public float minScale = 0.5f;      // Minimum scale limit
+    // Default rotation speed
+    [SerializeField] 
+    private float rotationSpeed = 100f;
 
-        private float currentSpeed;        // Stores the current rotation speed
-        private Vector3 defaultScale;      // Stores the cube's original scale
-        private int rotationDirection = 1; // 1 for right, -1 for left
+    // Amount by which speed increases or decreases
+    [SerializeField] 
+    private float speedIncrement = 10f; 
 
-        void Start()
-        {
-            currentSpeed = rotationSpeed;  // Initialize rotation speed
-            defaultScale = transform.localScale;  // Store the initial scale
-        }
 
-        void Update()
-        {
-            HandleRotation();  // Manage cube rotation
-            HandleScaling();   // Manage cube scaling
-        }
+    [Header("Scaling Settings")]
 
-        void HandleRotation()
-        {
-            // Increase rotation speed with W key
-            if (Input.GetKey(KeyCode.W))
-                currentSpeed += speedIncrement * Time.deltaTime;
+    // Amount by which the cube scales
+    [SerializeField] 
+    private float scaleFactor = 0.1f;
 
-            // Decrease rotation speed with S key
-            if (Input.GetKey(KeyCode.S))
-                currentSpeed -= speedIncrement * Time.deltaTime;
+    // Maximum scale limit
+    [SerializeField] 
+    private float maxScale = 3f;
 
-            // Change rotation direction to left with A key
-            if (Input.GetKey(KeyCode.A))
-                rotationDirection = -1;
+    // Minimum scale limit
+    [SerializeField] 
+    private float minScale = 0.5f;
 
-            // Change rotation direction to right with D key
-            if (Input.GetKey(KeyCode.D))
-                rotationDirection = 1;
 
-            // Apply rotation to the cube
-            transform.Rotate(Vector3.up * currentSpeed * rotationDirection * Time.deltaTime);
-        }
+    // Stores the current rotation speed
+    private float _currentSpeed = 0;
 
-    void HandleScaling()
+    // Stores the cube's original scale
+    private Vector3 _defaultScale = Vector3.one;
+
+    // 1 for right, -1 for left
+    private int _rotationDirection = 1; 
+
+    void Start()
+    {
+        // Initialize rotation speed
+        _currentSpeed = rotationSpeed;  
+
+        // Store the initial scale
+        _defaultScale = transform.localScale;  
+    }
+
+    void Update()
+    {
+        // Manage cube rotation
+        handleRotation();  
+
+        // Manage cube scaling
+        handleScaling();   
+    }
+
+    void handleRotation()
+    {
+        // Increase rotation speed with W key
+        if (Input.GetKey(KeyCode.W))
+            _currentSpeed += speedIncrement * Time.deltaTime;
+
+        // Decrease rotation speed with S key
+        if (Input.GetKey(KeyCode.S))
+            _currentSpeed -= speedIncrement * Time.deltaTime;
+
+        // Cap rotation speed to avoid negative values
+        _currentSpeed = Mathf.Max(0, _currentSpeed);
+
+        // Change rotation direction to left with A key
+        if (Input.GetKey(KeyCode.A))
+            _rotationDirection = -1;
+
+        // Change rotation direction to right with D key
+        if (Input.GetKey(KeyCode.D))
+            _rotationDirection = 1;
+
+        // Apply rotation to the cube
+        transform.Rotate(Vector3.up * _currentSpeed * _rotationDirection * Time.deltaTime);
+    }
+
+    void handleScaling()
     {
         Vector3 newScale = transform.localScale;
 
@@ -63,10 +94,10 @@ public class CubeController : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
             newScale -= Vector3.one * scaleFactor * Time.deltaTime;
 
-        // Prevent negative scale (clamp values)
-        newScale.x = Mathf.Max(newScale.x, minScale);
-        newScale.y = Mathf.Max(newScale.y, minScale);
-        newScale.z = Mathf.Max(newScale.z, minScale);
+        // Clamp scale values to stay within the min and max scale limits
+        newScale.x = Mathf.Clamp(newScale.x, minScale, maxScale);
+        newScale.y = Mathf.Clamp(newScale.y, minScale, maxScale);
+        newScale.z = Mathf.Clamp(newScale.z, minScale, maxScale);
 
         // Apply new scale
         transform.localScale = newScale;
