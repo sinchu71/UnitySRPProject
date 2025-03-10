@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  jumpHeight: 5
-  maxBalls: 5
+  jumpHeight: 10
+  maxBalls: 6

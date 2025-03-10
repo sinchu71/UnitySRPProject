@@ -28,8 +28,8 @@ public class CubeTextureColor : MonoBehaviour
             GetComponent<Renderer>().material = CubeMaterial;
 
             // Apply initial color and texture
-            ApplyColor();
-            ApplyTexture();
+            applyColor();
+            applyTexture();
         }
     }
 
@@ -37,60 +37,60 @@ public class CubeTextureColor : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            ChangeColorRight();
+            changeColorRight();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            ChangeColorLeft();
+            changeColorLeft();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && textures.Length > 0)
         {
-            ChangeTextureUp();
+            changeTextureUp();
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && textures.Length > 0)
         {
-            ChangeTextureDown();
+            changeTextureDown();
         }
     }
 
-    void ChangeColorRight()
+    void changeColorRight()
     {
         colorIndex = (colorIndex + 1) % colors.Length;
-        ApplyColor();
+        applyColor();
         Debug.Log("Color changed to: " + colors[colorIndex]);
     }
 
-    void ChangeColorLeft()
+    void changeColorLeft()
     {
         colorIndex = (colorIndex - 1 + colors.Length) % colors.Length;
-        ApplyColor();
+        applyColor();
         Debug.Log("Color changed to: " + colors[colorIndex]);
     }
 
-    void ChangeTextureUp()
+    void changeTextureUp()
     {
         textureIndex = (textureIndex + 1) % textures.Length;
-        ApplyTexture();
+        applyTexture();
         Debug.Log("Texture changed to: " + textures[textureIndex].name);
     }
 
-    void ChangeTextureDown()
+    void changeTextureDown()
     {
         textureIndex = (textureIndex - 1 + textures.Length) % textures.Length;
-        ApplyTexture();
+        applyTexture();
         Debug.Log("Texture changed to: " + textures[textureIndex].name);
     }
 
-    void ApplyColor()
+    void applyColor()
     {
         CubeMaterial.color = colors[colorIndex];
         CubeMaterial.SetColor("_BaseColor", colors[colorIndex]); // For materials using URP/HDRP shaders
     }
 
-    void ApplyTexture()
+    void applyTexture()
     {
         CubeMaterial.mainTexture = textures[textureIndex];
     }
