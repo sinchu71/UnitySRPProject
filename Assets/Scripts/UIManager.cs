@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     private Button CloseButton;
 
     [Header("Settings")]
-    public GameSetting settings;  // Make sure it's GameSettings (plural)
+    public GameSetting settings;  // Make sure it's GameSetting (plural)
 
     private void Start()
     {
@@ -37,31 +37,31 @@ public class UIManager : MonoBehaviour
         PlayerNameInput.text = settings.playerName;
 
         // Add Listeners
-        VolumeSlider.onValueChanged.AddListener(UpdateVolume);
-        DifficultyDropdown.onValueChanged.AddListener(UpdateDifficulty);
-        PlayerNameInput.onEndEdit.AddListener(UpdatePlayerName);
-        CloseButton.onClick.AddListener(ToggleSettingsPanel);
+        VolumeSlider.onValueChanged.AddListener(updateVolume);
+        DifficultyDropdown.onValueChanged.AddListener(updateDifficulty);
+        PlayerNameInput.onEndEdit.AddListener(updatePlayerName);
+        CloseButton.onClick.AddListener(toggleSettingsPanel);
 
         // Hide the panel initially
         gameObject.SetActive(false);
     }
 
-    private void UpdateVolume(float value)
+    private void updateVolume(float value)
     {
         settings.volume = value;  // Use lowercase 'volume'
     }
 
-    private void UpdateDifficulty(int value)
+    private void updateDifficulty(int value)
     {
         settings.difficulty = value;
     }
 
-    private void UpdatePlayerName(string name)
+    private void updatePlayerName(string name)
     {
         settings.playerName = name;
     }
 
-    public void ToggleSettingsPanel()
+    public void toggleSettingsPanel()
     {
         gameObject.SetActive(!gameObject.activeSelf);
     }
@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToggleSettingsPanel();
+            toggleSettingsPanel();
         }
     }
 }
