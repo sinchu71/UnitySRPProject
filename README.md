@@ -14,10 +14,6 @@
  ->UnitySRPProject->Repository
  ->FirstAssign->Unity Project Folder
 
- Clone the Repository
-->git clone https://github.com/Sinchu71/UnitySRPProject.git
-->cd UnitySRPProject
-
  Open the Project in Unity
 ->Ensure you have Unity 2023 3.58 installed.
 ->Open Unity Hub and click on Open
