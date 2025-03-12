@@ -2,39 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+
+
 public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler Instance;
 
-    [SerializeField] private GameObject objectToPool;
-    [SerializeField] private int poolSize = 10;
-
-    private List<GameObject> pooledObjects;
-
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        Instance = this;
+    }
 
-        pooledObjects = new List<GameObject>();
+    private Dictionary<string, Queue<GameObject>> poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        for (int i = 0; i < poolSize; i++)
+    public void CreatePool(string tag, GameObject prefab, int size)
+    {
+        if (!poolDictionary.ContainsKey(tag))
         {
-            GameObject obj = Instantiate(objectToPool);
-            obj.SetActive(false);
-            pooledObjects.Add(obj);
+            poolDictionary[tag] = new Queue<GameObject>();
+
+            for (int i = 0; i < size; i++)
+            {
+                GameObject obj = Instantiate(prefab);
+                obj.SetActive(false);
+                poolDictionary[tag].Enqueue(obj);
+            }
         }
     }
 
-    public GameObject GetPooledObject()
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        foreach (var obj in pooledObjects)
+        if (!poolDictionary.ContainsKey(tag) || poolDictionary[tag].Count == 0)
         {
-            if (!obj.activeInHierarchy)
-            {
-                return obj;
-            }
+            return null;
         }
-        return null;
+
+        GameObject obj = poolDictionary[tag].Dequeue();
+        obj.SetActive(true);
+        obj.transform.position = position;
+        obj.transform.rotation = rotation;
+
+        poolDictionary[tag].Enqueue(obj);
+
+        return obj;
     }
 }

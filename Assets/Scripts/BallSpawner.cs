@@ -2,49 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class BallSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject ballPrefab;
-    [SerializeField] private int maxBalls = 5;
-    [SerializeField] private float spawnAreaSize = 5f;
-    [SerializeField] private float disappearTime = 5f;
+    public GameObject ballPrefab;
+    public int poolSize = 10; // Total number of balls that can be active at once
+    public float spawnInterval = 2f;
+    public Vector3 spawnArea = new Vector3(10f, 5f, 10f);
 
-    private List<GameObject> balls = new List<GameObject>();
+    private float spawnTimer;
+
+    private void Start()
+    {
+        ObjectPooler.Instance.CreatePool("Ball", ballPrefab, poolSize);
+    }
 
     private void Update()
     {
-        if (balls.Count < maxBalls)
+        spawnTimer += Time.deltaTime;
+
+        if (spawnTimer >= spawnInterval)
         {
             SpawnBall();
+            spawnTimer = 0f;
         }
     }
 
     private void SpawnBall()
     {
-        GameObject ball = ObjectPooler.Instance.GetPooledObject();
-        
-        if (ball != null)
-        {
-            Vector3 spawnPos = new Vector3(
-                Random.Range(-spawnAreaSize, spawnAreaSize),
-                5f,
-                Random.Range(-spawnAreaSize, spawnAreaSize)
-            );
+        Vector3 spawnPosition = new Vector3(
+            Random.Range(-spawnArea.x / 2, spawnArea.x / 2),
+            spawnArea.y,
+            Random.Range(-spawnArea.z / 2, spawnArea.z / 2)
+        );
 
-            ball.transform.position = spawnPos;
-            ball.SetActive(true);
-
-            Ball ballScript = ball.GetComponent<Ball>();
-            ballScript.Initialize(disappearTime);
-
-            balls.Add(ball);
-        }
-    }
-
-    public void RemoveBall(GameObject ball)
-    {
-        balls.Remove(ball);
+        ObjectPooler.Instance.SpawnFromPool("Ball", spawnPosition, Quaternion.identity);
     }
 }
-

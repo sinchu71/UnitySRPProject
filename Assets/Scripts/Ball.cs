@@ -6,22 +6,39 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody rb;
-    private float disappearTime = 5f;  // Can be changed via Spawner
+    private int bounceCount = 0;
+    public int maxBounces = 5; // Number of times the ball will bounce before stopping
+    public float destroyTime = 5f; // Time before the ball disappears
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Initialize(float _disappearTime)
+    private void OnCollisionEnter(Collision collision)
     {
-        disappearTime = _disappearTime;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        Invoke(nameof(DestroyBall), disappearTime);
+        if (collision.contacts[0].normal.y > 0.5f) // Check if the collision is mostly with the ground
+        {
+            bounceCount++;
+
+            if (bounceCount >= maxBounces)
+            {
+                rb.velocity = Vector3.zero;
+                rb.useGravity = false;
+            }
+        }
     }
 
-    private void DestroyBall()
+    private void OnEnable()
+    {
+        bounceCount = 0;
+        rb.useGravity = true;
+        rb.velocity = Vector3.zero;
+
+        Invoke("Deactivate", destroyTime);
+    }
+
+    private void Deactivate()
     {
         gameObject.SetActive(false);
     }
