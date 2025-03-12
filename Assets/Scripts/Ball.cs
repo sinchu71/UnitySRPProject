@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Ball : MonoBehaviour
 {
     private Rigidbody rb;
+
+    [SerializeField]
     private int bounceCount = 0;
-    public int maxBounces = 5; // Number of times the ball will bounce before stopping
-    public float destroyTime = 5f; // Time before the ball disappears
+
+    [SerializeField]
+    // Number of times the ball will bounce before stopping
+    private int maxBounces = 5; 
+
+    // Time before the ball disappears
+    [SerializeField]
+    private float destroyTime = 5f; 
 
     private void Awake()
     {

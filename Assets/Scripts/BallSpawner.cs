@@ -5,10 +5,16 @@ using UnityEngine;
 public class BallSpawner : MonoBehaviour
 {
     public GameObject ballPrefab;
-    public int poolSize = 10; // Total number of balls that can be active at once
-    public float spawnInterval = 2f;
-    public Vector3 spawnArea = new Vector3(10f, 5f, 10f);
 
+    [SerializeField]
+    private int poolSize = 10; // Total number of balls that can be active at once
+    
+    [SerializeField]
+    private float spawnInterval = 2f;
+
+    public Vector3 spawnArea = new Vector3(10f, 5f, 10f);
+    
+    [SerializeField]
     private float spawnTimer;
 
     private void Start()
