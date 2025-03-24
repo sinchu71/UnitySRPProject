@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eacba6066c382a74896be56844994b78, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  jumpHeight: 10
-  maxBalls: 6
+  rotationSpeed: 68.45799
